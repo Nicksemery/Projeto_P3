@@ -2,6 +2,7 @@ package Sistema_financeiro.api.Controllers;
 
 import Sistema_financeiro.api.domain.Lançamentos.Categoria.*;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class CategoriaController {
 
     @PostMapping
     @Transactional
-    public void Cadastrar(@RequestBody DadosCadastroCategoria dados) {
+    public void Cadastrar(@RequestBody @Valid DadosCadastroCategoria dados) {
         repository.save(new Categoria(dados));
     }
 

@@ -17,7 +17,7 @@ public class PessoaController {
 
     @PostMapping
     @Transactional
-    public void Cadastrar(@RequestBody DadosCadastroPessoa dados) {
+    public void Cadastrar(@RequestBody @Valid DadosCadastroPessoa dados) {
         repository.save(new Pessoa(dados));
     }
 

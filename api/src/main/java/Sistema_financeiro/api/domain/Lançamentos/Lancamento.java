@@ -24,7 +24,7 @@ public class Lancamento {
     private Double valor;
     private String observacao;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "codigo_categoria")
     private Categoria categorias;
 
@@ -42,5 +42,26 @@ public class Lancamento {
         this.data_pagamento = dados.data_pagamento();
         this.valor = dados.valor();
         this.observacao = dados.observacao();
+    }
+
+    public void AtualizarInformacao(DadosAtualizarLancamento dados) {
+        if (dados.descricao() != null) {
+            this.descricao = dados.descricao();
+        }
+        if (dados.tipo() != null){
+            this.tipo = dados.tipo();
+        }
+        if (dados.data_vencimento() != null) {
+            this.data_vencimento = dados.data_vencimento();
+        }
+        if (dados.data_pagamento() != null) {
+            this.data_pagamento = dados.data_pagamento();
+        }
+        if (dados.valor() != null){
+            this.valor = dados.valor();
+        }
+        if (dados.observacao() != null) {
+            this.observacao = dados.observacao();
+        }
     }
 }
