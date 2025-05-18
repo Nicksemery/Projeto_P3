@@ -2,8 +2,10 @@ package Sistema_financeiro.api.domain.Lançamentos;
 
 
 import Sistema_financeiro.api.domain.Lançamentos.Categoria.Categoria;
+import Sistema_financeiro.api.domain.Pessoa.DadosEstrangeirosPessoa;
 import Sistema_financeiro.api.domain.Pessoa.Pessoa;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity(name = "Lancamento")
@@ -24,6 +26,7 @@ public class Lancamento {
     private Double valor;
     private String observacao;
 
+
     @ManyToOne
     @JoinColumn(name = "codigo_categoria")
     private Categoria categorias;
@@ -31,18 +34,23 @@ public class Lancamento {
     @ManyToOne
     @JoinColumn(name = "codigo_pessoa")
     private Pessoa pessoas;
+    private boolean ativo;
 
 
     public Lancamento() {}
 
-    public Lancamento(DadosCadastroLancamento dados) {
+    public Lancamento(DadosCadastroLancamento dados, Pessoa pessoas, Categoria categorias) {
         this.descricao = dados.descricao();
         this.tipo = dados.tipo();
         this.data_vencimento = dados.data_vencimento();
         this.data_pagamento = dados.data_pagamento();
         this.valor = dados.valor();
         this.observacao = dados.observacao();
+        this.pessoas = pessoas;
+        this.categorias = categorias;
+
     }
+
 
     public void AtualizarInformacao(DadosAtualizarLancamento dados) {
         if (dados.descricao() != null) {
@@ -63,5 +71,9 @@ public class Lancamento {
         if (dados.observacao() != null) {
             this.observacao = dados.observacao();
         }
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }

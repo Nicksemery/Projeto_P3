@@ -8,7 +8,7 @@ create table Pessoas(
                           cep varchar(9) not null,
                           cidade varchar(100) not null,
                           estado char(20) not null,
-                          ativo boolean not null,
+                          ativo varchar(20) check(ativo in ('true', 'false')) not null,
 
                           primary key(id)
 );
