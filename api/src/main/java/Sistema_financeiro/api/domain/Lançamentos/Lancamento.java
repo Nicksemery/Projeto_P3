@@ -8,6 +8,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Entity(name = "Lancamento")
 @Table(name = "Lancamento")
 @Data
@@ -21,33 +23,36 @@ public class Lancamento {
     private TipoLancamento tipo;
 
     private String descricao;
-    private String data_vencimento;
-    private String data_pagamento;
+
+    private LocalDate data_vencimento;
+    private LocalDate data_pagamento;
     private Double valor;
     private String observacao;
 
 
     @ManyToOne
     @JoinColumn(name = "codigo_categoria")
-    private Categoria categorias;
+    private Categoria categoria;
 
     @ManyToOne
     @JoinColumn(name = "codigo_pessoa")
-    private Pessoa pessoas;
+    private Pessoa pessoa;
+
     private boolean ativo;
 
 
     public Lancamento() {}
 
-    public Lancamento(DadosCadastroLancamento dados, Pessoa pessoas, Categoria categorias) {
+    public Lancamento(DadosCadastroLancamento dados, Pessoa pessoa, Categoria categoria) {
         this.descricao = dados.descricao();
         this.tipo = dados.tipo();
         this.data_vencimento = dados.data_vencimento();
         this.data_pagamento = dados.data_pagamento();
         this.valor = dados.valor();
         this.observacao = dados.observacao();
-        this.pessoas = pessoas;
-        this.categorias = categorias;
+        this.pessoa = pessoa;
+        this.categoria = categoria;
+        this.ativo = true;
 
     }
 

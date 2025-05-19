@@ -2,7 +2,6 @@ package Sistema_financeiro.api.domain.Lançamentos.Categoria;
 
 
 import Sistema_financeiro.api.domain.Lançamentos.Lancamento;
-import Sistema_financeiro.api.domain.Pessoa.DadosAtualizarPessoa;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,12 +19,22 @@ public class Categoria {
 
     private String nome;
 
-    @OneToMany(mappedBy = "categorias")
+    private boolean ativo;
+
+
+
+    @OneToMany(mappedBy = "categoria")
     private List<Lancamento> lancamentos = new ArrayList<>();
 
     public Categoria() {}
 
     public Categoria(DadosCadastroCategoria dados) {
+        this.ativo = true;
         this.nome = dados.nome();
     }
+
+    public void excluir() {
+        this.ativo = false;
+    }
 }
+

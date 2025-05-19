@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "Pessoa")
-@Table(name = "Pessoas")
+@Table(name = "Pessoa")
 @Data
 public class Pessoa {
 
@@ -25,7 +25,7 @@ public class Pessoa {
     private boolean ativo;
 
 
-    @OneToMany(mappedBy = "pessoas")
+    @OneToMany(mappedBy = "pessoa")
     private List<Lancamento> lancamentos = new ArrayList<>();
 
 

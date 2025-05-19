@@ -8,8 +8,9 @@ create table lancamento(
     tipo varchar(20) check(tipo in ('receita','despesa')) not null,
     codigo_categoria int not null,
     codigo_pessoa int not null,
+    ativo boolean default true,
 
     foreign key (codigo_categoria) references categoria(id),
-    foreign key (codigo_pessoa) references Pessoas(id)
+    foreign key (codigo_pessoa) references pessoa(id)
 
 );

@@ -2,9 +2,6 @@ package Sistema_financeiro.api.domain.Lançamentos.Categoria;
 
 import jakarta.validation.constraints.NotNull;
 
-public record DadosEstrangeirosCategoria(@NotNull long id) {
+public record DadosEstrangeirosCategoria(@NotNull Long codigo_categoria) {
 
-    public DadosEstrangeirosCategoria(Categoria categoria){
-        this(categoria.getId());
-    }
 }

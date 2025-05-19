@@ -1,4 +1,4 @@
-create table Pessoas(
+create table pessoa(
                           id int not null auto_increment,
                           nome varchar(100) not null,
                           logradouro varchar(100) not null,
@@ -8,7 +8,7 @@ create table Pessoas(
                           cep varchar(9) not null,
                           cidade varchar(100) not null,
                           estado char(20) not null,
-                          ativo varchar(20) check(ativo in ('true', 'false')) not null,
+                          ativo BOOLEAN DEFAULT true not null,
 
                           primary key(id)
 );

@@ -28,11 +28,13 @@ public class LancamentoController {
     @PostMapping
     @Transactional
     public ResponseEntity Cadastrar(@RequestBody @Valid DadosCadastroLancamento dados, UriComponentsBuilder uriBuilder) {
-        var pessoas = pessoaRepository.getReferenceById(dados.codigo_pessoa().id());
-        var categorias = categoriaRepository.getReferenceById(dados.codigo_categoria().id());
-        var lancamento = new Lancamento(dados, pessoas, categorias);
+        var pessoa = pessoaRepository.getReferenceById(dados.pessoa().codigo_pessoa());
+        var categoria = categoriaRepository.getReferenceById(dados.categoria().codigo_categoria());
+
+        var lancamento = new Lancamento(dados, pessoa, categoria);
         repository.save(lancamento);
-        var uri = uriBuilder.path("/Pessoa/{id}").buildAndExpand(lancamento.getId()).toUri();
+
+        var uri = uriBuilder.path("/lancamento/{id}").buildAndExpand(lancamento.getId()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoLancamento(lancamento));
     }
 
