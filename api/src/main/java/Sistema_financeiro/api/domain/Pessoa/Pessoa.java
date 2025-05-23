@@ -5,6 +5,7 @@ import Sistema_financeiro.api.domain.Pessoa.Endereco.Endereco;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @Entity(name = "Pessoa")
 @Table(name = "Pessoa")
 @Data
+@EqualsAndHashCode(of = "id")
 public class Pessoa {
 
     @Id

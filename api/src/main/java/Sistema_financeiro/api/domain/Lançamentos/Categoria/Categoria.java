@@ -4,6 +4,7 @@ package Sistema_financeiro.api.domain.Lançamentos.Categoria;
 import Sistema_financeiro.api.domain.Lançamentos.Lancamento;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity(name = "categoria")
 @Table(name = "categoria")
 @Data
+@EqualsAndHashCode(of = "id")
 public class Categoria {
 
     @Id

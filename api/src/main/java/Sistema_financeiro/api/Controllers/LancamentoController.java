@@ -39,8 +39,8 @@ public class LancamentoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemLancamento>> listar(@PageableDefault(size = 10, sort = {"descricao"})Pageable pageable) {
-        var pagina = repository.findAll(pageable).map(DadosListagemLancamento::new);
+    public ResponseEntity<Page<DadosListagemLancamento>> listar(@PageableDefault(size = 10, sort = {"descricao"})Pageable pag) {
+        var pagina = repository.findAllByAtivoTrue(pag).map(DadosListagemLancamento::new);
         return ResponseEntity.ok(pagina);
     }
 
