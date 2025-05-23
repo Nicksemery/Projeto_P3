@@ -1,7 +1,7 @@
 package Sistema_financeiro.api.domain.Lançamentos.Categoria;
 
 public record DadosListagemCategoria(
-        long id,
+        Long id,
         String nome
 ) {
 

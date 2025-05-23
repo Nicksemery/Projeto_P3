@@ -1,13 +1,14 @@
 package Sistema_financeiro.api.domain.Lançamentos;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record DadosListagemLancamento(
-        long id,
+        Long id,
         String descricao,
         LocalDate data_vencimento,
         LocalDate data_pagamento,
-        double valor,
+        BigDecimal valor,
         String observacao,
         TipoLancamento tipo
 ) {

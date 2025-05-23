@@ -2,8 +2,6 @@ package Sistema_financeiro.api.Controllers;
 
 
 import Sistema_financeiro.api.domain.Lançamentos.*;
-import Sistema_financeiro.api.domain.Lançamentos.Categoria.CategoriaRepository;
-import Sistema_financeiro.api.domain.Pessoa.PessoaRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +18,12 @@ public class LancamentoController {
 
     @Autowired
     private LancamentoRepository repository;
-    @Autowired
-    private PessoaRepository pessoaRepository;
-    @Autowired
-    private CategoriaRepository categoriaRepository;
 
     @PostMapping
     @Transactional
     public ResponseEntity Cadastrar(@RequestBody @Valid DadosCadastroLancamento dados, UriComponentsBuilder uriBuilder) {
-        var pessoa = pessoaRepository.getReferenceById(dados.pessoa().codigo_pessoa());
-        var categoria = categoriaRepository.getReferenceById(dados.categoria().codigo_categoria());
 
-        var lancamento = new Lancamento(dados, pessoa, categoria);
+        var lancamento = new Lancamento(dados);
         repository.save(lancamento);
 
         var uri = uriBuilder.path("/lancamento/{id}").buildAndExpand(lancamento.getId()).toUri();

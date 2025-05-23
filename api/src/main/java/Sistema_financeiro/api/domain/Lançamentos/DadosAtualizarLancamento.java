@@ -1,17 +1,17 @@
 package Sistema_financeiro.api.domain.Lançamentos;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record DadosAtualizarLancamento(
-        @NotNull long id,
+        @NotNull Long id,
         String descricao,
         TipoLancamento tipo,
         LocalDate data_vencimento,
         LocalDate data_pagamento,
-        Double valor,
+        BigDecimal valor,
         String observacao
 ) {
 }

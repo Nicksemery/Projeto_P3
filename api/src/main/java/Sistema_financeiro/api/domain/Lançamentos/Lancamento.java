@@ -2,12 +2,11 @@ package Sistema_financeiro.api.domain.Lançamentos;
 
 
 import Sistema_financeiro.api.domain.Lançamentos.Categoria.Categoria;
-import Sistema_financeiro.api.domain.Pessoa.DadosEstrangeirosPessoa;
 import Sistema_financeiro.api.domain.Pessoa.Pessoa;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity(name = "Lancamento")
@@ -26,7 +25,7 @@ public class Lancamento {
 
     private LocalDate data_vencimento;
     private LocalDate data_pagamento;
-    private Double valor;
+    private BigDecimal valor;
     private String observacao;
 
 
@@ -43,15 +42,15 @@ public class Lancamento {
 
     public Lancamento() {}
 
-    public Lancamento(DadosCadastroLancamento dados, Pessoa pessoa, Categoria categoria) {
+    public Lancamento(DadosCadastroLancamento dados) {
         this.descricao = dados.descricao();
         this.tipo = dados.tipo();
         this.data_vencimento = dados.data_vencimento();
         this.data_pagamento = dados.data_pagamento();
         this.valor = dados.valor();
         this.observacao = dados.observacao();
-        this.pessoa = pessoa;
-        this.categoria = categoria;
+        this.pessoa = dados.pessoa();
+        this.categoria = dados.categoria();
         this.ativo = true;
 
     }
