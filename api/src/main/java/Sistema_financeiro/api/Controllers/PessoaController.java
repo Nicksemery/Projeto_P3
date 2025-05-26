@@ -12,7 +12,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("Pessoa")
-public class    PessoaController {
+public class PessoaController {
 
     @Autowired
     private PessoaRepository repository;

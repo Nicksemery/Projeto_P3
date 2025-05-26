@@ -3,6 +3,7 @@ package Sistema_financeiro.api.domain.Lançamentos.Categoria;
 
 import Sistema_financeiro.api.domain.Lançamentos.Lancamento;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -23,8 +24,6 @@ public class Categoria {
 
     private boolean ativo;
 
-
-
     @OneToMany(mappedBy = "categoria")
     private List<Lancamento> lancamentos = new ArrayList<>();
 
@@ -37,6 +36,12 @@ public class Categoria {
 
     public void excluir() {
         this.ativo = false;
+    }
+
+    public void atualizar(@Valid DadosAtualizarCategoria dados) {
+        if (this.nome != null) {
+            this.nome = dados.nome();
+        }
     }
 }
 
